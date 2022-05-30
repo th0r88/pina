@@ -17,6 +17,45 @@
     <link rel="stylesheet" href="css/simplyCountdown.theme.default.css"/>
     <link rel="stylesheet" href="css/demo-only/prism.css"/>
     <link rel="stylesheet" href="css/demo.css"/>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
+    <script src="dist/simplyCountdown.js"></script>
+    <script>
+        simplyCountdown('[CSS-SELECTOR]', {
+                year: 2039, // required
+                month: 6, // required
+                day: 4, // required
+                hours: 0, // Default is 0 [0-23] integer
+                minutes: 12, // Default is 0 [0-59] integer
+                seconds: 0, // Default is 0 [0-59] integer
+                words: { //words displayed into the countdown
+                    days: { singular: 'day', plural: 'days' },
+                    hours: { singular: 'hour', plural: 'hours' },
+                    minutes: { singular: 'minute', plural: 'minutes' },
+                    seconds: { singular: 'second', plural: 'seconds' }
+                },
+                plural: true, //use plurals
+                inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
+                inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
+                // in case of inline set to false
+                enableUtc: false, //Use UTC or not - default : false
+                onEnd: function() { return; }, //Callback on countdown end, put your own function here
+                refresh: 1000, // default refresh every 1s
+                sectionClass: 'simply-section', //section css class
+                amountClass: 'simply-amount', // amount css class
+                wordClass: 'simply-word', // word css class
+                zeroPad: false,
+                countUp: false
+        });
+
+        //jQuery example
+        $('#simply-countdown-losange').simplyCountdown({
+            year: d.getFullYear(),
+            month: d.getMonth() + 1,
+            day: d.getDate(),
+            enableUtc: false
+        });
+    </script>
 </head>
 <body>
     <section class="examples">
@@ -37,57 +76,5 @@
         <p>countup Enabled option</p>
         <div class="simply-countdown simply-countdown-countup" id="simply-countdown-countup"></div>
     </section>
-
-<script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script>
-<script src="dev/simplyCountdown.js"></script>
-<script>
-    simplyCountdown('[CSS-SELECTOR]', {
-            year: 2039, // required
-            month: 6, // required
-            day: 4, // required
-            hours: 0, // Default is 0 [0-23] integer
-            minutes: 12, // Default is 0 [0-59] integer
-            seconds: 0, // Default is 0 [0-59] integer
-            words: { //words displayed into the countdown
-                days: { singular: 'day', plural: 'days' },
-                hours: { singular: 'hour', plural: 'hours' },
-                minutes: { singular: 'minute', plural: 'minutes' },
-                seconds: { singular: 'second', plural: 'seconds' }
-            },
-            plural: true, //use plurals
-            inline: false, //set to true to get an inline basic countdown like : 24 days, 4 hours, 2 minutes, 5 seconds
-            inlineClass: 'simply-countdown-inline', //inline css span class in case of inline = true
-            // in case of inline set to false
-            enableUtc: false, //Use UTC or not - default : false
-            onEnd: function() { return; }, //Callback on countdown end, put your own function here
-            refresh: 1000, // default refresh every 1s
-            sectionClass: 'simply-section', //section css class
-            amountClass: 'simply-amount', // amount css class
-            wordClass: 'simply-word', // word css class
-            zeroPad: false,
-            countUp: false
-    });
-
-    //jQuery example
-    $('#simply-countdown-losange').simplyCountdown({
-        year: d.getFullYear(),
-        month: d.getMonth() + 1,
-        day: d.getDate(),
-        enableUtc: false
-    });
-
-    // direct element injection & Count Up Example
-    var countUp = document.querySelector('.simply-countdown-countup');
-    simplyCountdown(countUp, {
-        year: countUpDate.getFullYear(),
-        month: countUpDate.getMonth() + 1,
-        day: countUpDate.getDate(),
-        hours: countUpDate.getHours(),
-        minutes: countUpDate.getMinutes(),
-        seconds: countUpDate.getSeconds(),
-        countUp: true
-    });
-</script>
 </body>
 </html>
